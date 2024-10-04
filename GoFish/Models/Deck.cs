@@ -7,7 +7,13 @@ namespace GoFish.Models
   {
     public List<Card> DeckOfCards { get; set; } = new List<Card> ();
 
-    public void CreateDeck()
+    public Deck()
+    {
+      CreateDeck();
+      ShuffleDeck();
+    }
+
+    private void CreateDeck()
     {
       List<string> suits = new List<string> {"Hearts", "Clubs", "Diamonds", "Spades"};
       List<string> values = new List<string> {"Ace", "2", "3", "4"};
@@ -19,7 +25,23 @@ namespace GoFish.Models
           DeckOfCards.Add(newCard);
         }
       }
-      Console.WriteLine(DeckOfCards.Count);
+    }
+
+    // Fisher-Yates Shuffle, https://exceptionnotfound.net/understanding-the-fisher-yates-card-shuffling-algorithm/
+    public void ShuffleDeck()
+    {
+      Random randomObj = new Random();
+      for (int index = DeckOfCards.Count - 1; index > 0; --index)
+      {
+        int randomIndex = randomObj.Next(index + 1);
+        Card temp = DeckOfCards[index];
+        DeckOfCards[index] = DeckOfCards[randomIndex];
+        DeckOfCards[randomIndex] = temp;
+      }
+      // foreach (Card card in DeckOfCards)
+      // {
+      //   Console.WriteLine(card.Suit + card.Value);
+      // }
     }
   }
 }

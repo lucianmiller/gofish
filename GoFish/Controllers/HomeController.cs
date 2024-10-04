@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using GoFish.Models;
 
 namespace GoFish.Controllers
 {
@@ -8,6 +9,7 @@ namespace GoFish.Controllers
       [HttpGet("/")]
       public ActionResult Index()
       {
+        Deck newDeck = new Deck();
         return View();
       }
 
