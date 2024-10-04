@@ -16,7 +16,7 @@ namespace GoFish.Models
     private void CreateDeck()
     {
       List<string> suits = new List<string> {"Hearts", "Clubs", "Diamonds", "Spades"};
-      List<string> values = new List<string> {"Ace", "2", "3", "4"};
+      List<string> values = new List<string> {"Ace", "2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King"};
       foreach (string suit in suits)
       {
         foreach (string value in values)
