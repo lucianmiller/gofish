@@ -38,10 +38,20 @@ namespace GoFish.Models
         DeckOfCards[index] = DeckOfCards[randomIndex];
         DeckOfCards[randomIndex] = temp;
       }
-      // foreach (Card card in DeckOfCards)
-      // {
-      //   Console.WriteLine(card.Suit + card.Value);
-      // }
+    }
+
+    public List<Card> DrawCards(int numOfCards)
+    {
+      List<Card> hand = new List<Card> {};
+      for (;numOfCards > 0; --numOfCards)
+      {
+        Random randomObj = new Random();
+        int randomIndex = randomObj.Next(0, DeckOfCards.Count);
+        Card randomCard = DeckOfCards[randomIndex];
+        hand.Add(randomCard);
+        DeckOfCards.RemoveAt(randomIndex);
+      }
+      return hand;
     }
   }
 }
