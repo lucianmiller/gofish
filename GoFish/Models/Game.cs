@@ -4,31 +4,31 @@ namespace GoFish.Models
 {
   public class Game
   {
-    public Deck newDeck { get; set; } = new Deck();
-    public Player playerObject { get; set; } = new Player();
+    public Deck NewDeck { get; set; } = new Deck();
+    public Player PlayerObject { get; set; } = new Player();
 
     public Game()
     {
-      playerObject.PlayerHand = newDeck.DrawCards(5);
-      playerObject.ComputerHand = newDeck.DrawCards(5);
+      PlayerObject.PlayerHand = NewDeck.DrawCards(5);
+      PlayerObject.ComputerHand = NewDeck.DrawCards(5);
     }
 
     public void AskCard(Card selectedCard)
     {
       bool valueMatched = false;
-      foreach (Card currentCard in playerObject.ComputerHand)
+      foreach (Card currentCard in PlayerObject.ComputerHand)
       {
         if (selectedCard.Value == currentCard.Value)
         {
           valueMatched = true;
-          playerObject.PlayerHand.Add(currentCard);
-          playerObject.ComputerHand.Remove(currentCard);
+          PlayerObject.PlayerHand.Add(currentCard);
+          PlayerObject.ComputerHand.Remove(currentCard);
         }
       }
       if (valueMatched == false)
       {
-        List<Card> drawnCard = newDeck.DrawCards(1);
-        playerObject.PlayerHand.Add(drawnCard[0]);
+        List<Card> drawnCard = NewDeck.DrawCards(1);
+        PlayerObject.PlayerHand.Add(drawnCard[0]);
       }
     }
   }
