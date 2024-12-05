@@ -9,8 +9,27 @@ namespace GoFish.Models
 
     public Game()
     {
-      playerObject.Player1Hand = newDeck.DrawCards(5);
+      playerObject.PlayerHand = newDeck.DrawCards(5);
       playerObject.ComputerHand = newDeck.DrawCards(5);
+    }
+
+    public void AskCard(Card selectedCard)
+    {
+      bool valueMatched = false;
+      foreach (Card currentCard in playerObject.ComputerHand)
+      {
+        if (selectedCard.Value == currentCard.Value)
+        {
+          valueMatched = true;
+          playerObject.PlayerHand.Add(currentCard);
+          playerObject.ComputerHand.Remove(currentCard);
+        }
+      }
+      if (valueMatched == false)
+      {
+        List<Card> drawnCard = newDeck.DrawCards(1);
+        playerObject.PlayerHand.Add(drawnCard[0]);
+      }
     }
   }
 }
