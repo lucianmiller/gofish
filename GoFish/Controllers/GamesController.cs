@@ -9,7 +9,7 @@ namespace GoFish.Controllers
     public ActionResult Index()
     {
       Game newGame = new Game();
-      return View();
+      return View(newGame);
     }
   }
 }
