@@ -3,15 +3,12 @@ using GoFish.Models;
 
 namespace GoFish.Controllers
 {
-    public class HomeController : Controller
+  public class HomeController : Controller
+  {
+    [HttpGet("/")]
+    public ActionResult Index()
     {
-
-      [HttpGet("/")]
-      public ActionResult Index()
-      {
-        Game newGame = new Game();
-        return View();
-      }
-
+      return View();
     }
+  }
 }
