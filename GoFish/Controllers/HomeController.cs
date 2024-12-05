@@ -9,7 +9,7 @@ namespace GoFish.Controllers
       [HttpGet("/")]
       public ActionResult Index()
       {
-        Deck newDeck = new Deck();
+        Game newGame = new Game();
         return View();
       }
 
