@@ -6,11 +6,17 @@ namespace GoFish.Models
   {
     public Deck NewDeck { get; set; } = new Deck();
     public Player PlayerObject { get; set; } = new Player();
+    private static Game _instance;
 
-    public Game()
+    public static Game GetInstance()
     {
-      PlayerObject.PlayerHand = NewDeck.DrawCards(5);
-      PlayerObject.ComputerHand = NewDeck.DrawCards(5);
+      if (_instance == null)
+      {
+        _instance = new Game();
+        PlayerObject.PlayerHand = NewDeck.DrawCards(5);
+        PlayerObject.ComputerHand = NewDeck.DrawCards(5);
+      }
+      return _instance;
     }
 
     public void AskCard(Card selectedCard)
