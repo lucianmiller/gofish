@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using GoFish.Models;
+using System;
 
 namespace GoFish.Controllers
 {
@@ -8,8 +9,16 @@ namespace GoFish.Controllers
     [HttpGet("/games")]
     public ActionResult Index()
     {
-      Game newGame = new Game();
-      return View(newGame);
+      Game gameObj = Game.GetInstance();
+      return View(gameObj);
+    }
+
+    [HttpPost("/games/ask-card")]
+    public ActionResult AskCard(string cardValue, string cardSuit)
+    {
+      Console.WriteLine(cardValue);
+      Console.WriteLine(cardSuit);
+      return RedirectToAction("Index");
     }
   }
 }
