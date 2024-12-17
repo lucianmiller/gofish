@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System;
 
 namespace GoFish.Models
 {
@@ -27,15 +28,20 @@ namespace GoFish.Models
     public void AskCard(Card selectedCard)
     {
       bool valueMatched = false;
-      foreach (Card currentCard in PlayerObject.ComputerHand)
+      List<Card> newComputerHand = new List<Card> {};
+      foreach (Card computersCard in PlayerObject.ComputerHand)
       {
-        if (selectedCard.Value == currentCard.Value)
+        if (selectedCard.Value == computersCard.Value)
         {
           valueMatched = true;
-          PlayerObject.PlayerHand.Add(currentCard);
-          PlayerObject.ComputerHand.Remove(currentCard);
+          PlayerObject.PlayerHand.Add(computersCard);
+        }
+        else
+        {
+          newComputerHand.Add(computersCard);
         }
       }
+      PlayerObject.ComputerHand = newComputerHand;
       if (valueMatched == false)
       {
         List<Card> drawnCard = NewDeck.DrawCards(1);

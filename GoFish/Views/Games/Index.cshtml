@@ -10,7 +10,11 @@
     <h1>Your Hand</h1>
     @foreach (Card card in Model.PlayerObject.PlayerHand)
     {
-      <p>@card.Value of @card.Suit</p>
+      <form action="/games/ask-card" method="post">
+        <input name="cardValue" type="text" value="@card.Value" hidden>
+        <input name="cardSuit" type="text" value="@card.Suit" hidden>
+        <button type="submit" name="button">@card.Value of @card.Suit</button>
+      </form>
     }
   </body>
   </html>

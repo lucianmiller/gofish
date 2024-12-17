@@ -16,8 +16,9 @@ namespace GoFish.Controllers
     [HttpPost("/games/ask-card")]
     public ActionResult AskCard(string cardValue, string cardSuit)
     {
-      Console.WriteLine(cardValue);
-      Console.WriteLine(cardSuit);
+      Game gameObj = Game.GetInstance();
+      Card tempCard = new Card(cardSuit, cardValue);
+      gameObj.AskCard(tempCard);
       return RedirectToAction("Index");
     }
   }
