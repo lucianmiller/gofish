@@ -21,5 +21,12 @@ namespace GoFish.Controllers
       gameObj.AskCard(tempCard);
       return RedirectToAction("Index");
     }
+
+    [HttpPost("/games/reset")]
+    public ActionResult Reset()
+    {
+      Game.Reset();
+      return RedirectToAction("Index");
+    }
   }
 }
