@@ -6,7 +6,20 @@
   </head>
   <body>
     @using GoFish.Models;
-
+    <form action="/games/reset" method="post">
+      <button type="submit" name="reset-button">Reset</button>
+    </form>
+    <br>
+    <h2>Number of cards left in the deck: @Model.NewDeck.DeckOfCards.Count</h2>
+    @if (@Model.ComputerTurn == false)
+    {
+      <h2>Turn: Your Turn!</h2>
+    }
+    else
+    {
+      <h2>Turn: Computers Turn!</h2>
+    }
+    <br>
     <h1>Your Hand</h1>
     @foreach (Card card in Model.PlayerObject.PlayerHand)
     {
