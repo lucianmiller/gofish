@@ -8,6 +8,7 @@ namespace GoFish.Models
     private static Game _instance;
     public Deck NewDeck { get; set; } = new Deck();
     public Player PlayerObject { get; set; } = new Player();
+    public Computer ComputerObject { get; set; } = new Computer();
     public bool ComputerTurn { get; set; } = false;
 
     public static Game GetInstance()
@@ -24,14 +25,15 @@ namespace GoFish.Models
     {
       _instance.NewDeck = new Deck();
       _instance.PlayerObject = new Player();
+      _instance.ComputerObject = new Computer();
       _instance.ComputerTurn = false;
       _instance.DrawInitialHand();
     }
 
     public void DrawInitialHand()
     {
-      PlayerObject.PlayerHand = NewDeck.DrawCards(5);
-      PlayerObject.ComputerHand = NewDeck.DrawCards(5);
+      PlayerObject.Hand = NewDeck.DrawCards(5);
+      ComputerObject.Hand = NewDeck.DrawCards(5);
     }
 
     public void SwitchTurn()
@@ -46,15 +48,19 @@ namespace GoFish.Models
       }
     }
 
+    //Based on the current player, checks if selected card is in an opposing players hand
     public void AskCard(Card selectedCard)
     {
-      List<Card> currentUserCards = PlayerObject.PlayerHand;
-      List<Card> askedUserHand = PlayerObject.ComputerHand;
+      //determine current player and opposing player hand
+      List<Card> currentUserCards = PlayerObject.Hand;
+      List<Card> askedUserHand = ComputerObject.Hand;
       if (ComputerTurn == true)
       {
-        currentUserCards = PlayerObject.ComputerHand;
-        askedUserHand = PlayerObject.PlayerHand;
+        currentUserCards = ComputerObject.Hand;
+        askedUserHand = PlayerObject.Hand;
       }
+
+      //searching through other hand and adding it to the current users hand if it is found
       bool valueMatched = false;
       List<Card> newAskedUserHand = new List<Card> {};
       foreach (Card otherUserCard in askedUserHand)
@@ -69,6 +75,9 @@ namespace GoFish.Models
           newAskedUserHand.Add(otherUserCard);
         }
       }
+      //reassign user hand to filtered hand
+
+      //If card is not found, draw from deck
       askedUserHand = newAskedUserHand;
       if (valueMatched == false)
       {

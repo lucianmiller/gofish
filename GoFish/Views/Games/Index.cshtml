@@ -21,7 +21,7 @@
     }
     <br>
     <h1>Your Hand</h1>
-    @foreach (Card card in Model.PlayerObject.PlayerHand)
+    @foreach (Card card in Model.PlayerObject.Hand)
     {
       <form action="/games/ask-card" method="post">
         <input name="cardValue" type="text" value="@card.Value" hidden>
