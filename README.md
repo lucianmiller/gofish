@@ -7,6 +7,6 @@
   - [X] 3. If the value matches, give card to player
   - [X] 4. If the value doesn't match, have player draw from deck
 - [x] 5. Display ranks on view
-- [ ] 6. Set up alternating turns
+- [ ] 6. Set up alternating turns. Allow computer to take it's turn
 - [ ] 7. Display if player or computer get complete pair of 4 cards
-- [ ] 8. end game when deck is out of cards. The player with the most amount of 4 of a kind is the winner
+- [ ] 8. end game when deck is out of cards and hands are empty. The player with the most amount of 4 of a kind is the winner

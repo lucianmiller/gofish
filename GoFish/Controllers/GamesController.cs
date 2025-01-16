@@ -19,7 +19,26 @@ namespace GoFish.Controllers
       Game gameObj = Game.GetInstance();
       Card tempCard = new Card(cardSuit, cardValue);
       gameObj.AskCard(tempCard);
-      return RedirectToAction("Index");
+      if (gameObj.ComputerTurn == false)
+      {
+        return RedirectToAction("Index");
+      }
+      else
+      {
+        return RedirectToAction("ComputerThinking");
+      }
+    }
+
+    [HttpGet("/games/computer-thinking")]
+    public ActionResult ComputerThinking()
+    {
+      return View();
+    }
+
+    [HttpGet("/games/computer-turn")]
+    public ActionResult ComputerTurn()
+    {
+      return View();
     }
 
     [HttpPost("/games/reset")]
