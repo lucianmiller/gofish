@@ -10,3 +10,15 @@
 - [ ] 6. Set up alternating turns. Allow computer to take it's turn
 - [ ] 7. Display if player or computer get complete pair of 4 cards
 - [ ] 8. end game when deck is out of cards and hands are empty. The player with the most amount of 4 of a kind is the winner
+
+
+**HANDLE COMPUTER TURN**
+
+- [x] 1. Create and start timer
+- [x] 2. Change display to inform player what computer accomplished
+- [ ] 3. Change turn to players turn
+
+
+* ComputerThinking is logic (AskCard)
+* ComputerTurn display's what happened during turn (change name to TurnSummary)
+* Go back to players turn

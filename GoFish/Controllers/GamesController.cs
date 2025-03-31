@@ -32,12 +32,21 @@ namespace GoFish.Controllers
     [HttpGet("/games/computer-thinking")]
     public ActionResult ComputerThinking()
     {
+      Game gameObj = Game.GetInstance();
+      Random randomObj = new Random();
+      int randomCardIndex = randomObj.Next(0, gameObj.ComputerObject.Hand.Count);
+      Card randomCard = gameObj.ComputerObject.Hand[randomCardIndex];
+      gameObj.AskCard(randomCard);
+      ViewBag.CardSuit = randomCard.Suit;
+      Console.WriteLine("\x1b[37;46mCOMPUTERS TURN\x1b[0m");
+      Console.WriteLine($"\x1b[37;40mCard: {randomCard.Suit}\x1b[0m");
       return View();
     }
 
-    [HttpGet("/games/computer-turn")]
-    public ActionResult ComputerTurn()
+    [HttpGet("/games/turn-summary")]
+    public ActionResult TurnSummary(string cardSuit)
     {
+      ViewBag.CardSuit = cardSuit;
       return View();
     }
 

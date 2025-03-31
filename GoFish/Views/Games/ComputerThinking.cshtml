@@ -5,11 +5,12 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
   </head>
   <body>
-    <h1>It's the computers turn.</h1>
+    <h1>The computer is thinking...</h1>
     <script>
-      const computerTurnURL = '@Url.Action("computer-turn", "games")';
+      let cardSuit = '@ViewBag.CardSuit';
+      const turnSummaryURL = '@Url.Action("turn-summary", "games")' + '?cardSuit=' + encodeURIComponent(cardSuit);
       setTimeout(() => {
-        window.location.href = computerTurnURL;
+        window.location.href = turnSummaryURL;
       }, "5000")
     </script>
   </body>
