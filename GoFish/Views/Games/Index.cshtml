@@ -11,14 +11,6 @@
     </form>
     <br>
     <h2>Number of cards left in the deck: @Model.NewDeck.DeckOfCards.Count</h2>
-    @if (@Model.ComputerTurn == false)
-    {
-      <h2>Turn: Your Turn!</h2>
-    }
-    else
-    {
-      <h2>Turn: Computers Turn!</h2>
-    }
     <br>
     <h2>Your ranks: @Model.PlayerObject.Ranks</h2>
     <h2>Computers ranks: @Model.ComputerObject.Ranks</h2>

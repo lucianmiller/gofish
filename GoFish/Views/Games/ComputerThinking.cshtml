@@ -7,8 +7,8 @@
   <body>
     <h1>The computer is thinking...</h1>
     <script>
-      let cardSuit = '@ViewBag.CardSuit';
-      const turnSummaryURL = '@Url.Action("turn-summary", "games")' + '?cardSuit=' + encodeURIComponent(cardSuit);
+      let cardValue = '@ViewBag.CardValue';
+      const turnSummaryURL = '@Url.Action("turn-summary", "games")' + '?cardValue=' + encodeURIComponent(cardValue);
       setTimeout(() => {
         window.location.href = turnSummaryURL;
       }, "5000")

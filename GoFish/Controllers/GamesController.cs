@@ -14,7 +14,7 @@ namespace GoFish.Controllers
     }
 
     [HttpPost("/games/ask-card")]
-    public ActionResult AskCard(string cardValue, string cardSuit)
+    public ActionResult AskCard(string cardSuit, string cardValue)
     {
       Game gameObj = Game.GetInstance();
       Card tempCard = new Card(cardSuit, cardValue);
@@ -37,16 +37,16 @@ namespace GoFish.Controllers
       int randomCardIndex = randomObj.Next(0, gameObj.ComputerObject.Hand.Count);
       Card randomCard = gameObj.ComputerObject.Hand[randomCardIndex];
       gameObj.AskCard(randomCard);
-      ViewBag.CardSuit = randomCard.Suit;
+      ViewBag.CardValue = randomCard.Value;
       Console.WriteLine("\x1b[37;46mCOMPUTERS TURN\x1b[0m");
-      Console.WriteLine($"\x1b[37;40mCard: {randomCard.Suit}\x1b[0m");
+      Console.WriteLine($"\x1b[37;40mCard: {randomCard.Value}\x1b[0m");
       return View();
     }
 
     [HttpGet("/games/turn-summary")]
-    public ActionResult TurnSummary(string cardSuit)
+    public ActionResult TurnSummary(string cardValue)
     {
-      ViewBag.CardSuit = cardSuit;
+      ViewBag.CardValue = cardValue;
       return View();
     }
 
