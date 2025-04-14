@@ -10,3 +10,9 @@
 - [X] 6. Set up alternating turns. Allow computer to take it's turn
 - [ ] 7. Display if player or computer get complete pair of 4 cards
 - [ ] 8. end game when deck is out of cards and hands are empty. The player with the most amount of 4 of a kind is the winner
+
+
+## check ranks ##
+* [x] check to see if computer or player has 4 of the same value in hand
+* [x] If yes, remove them from hand
+* [x] add 1 to rank counter

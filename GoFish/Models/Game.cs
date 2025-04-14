@@ -86,5 +86,35 @@ namespace GoFish.Models
       }
       SwitchTurn();
     }
+
+    public void CardValueMatch(Card cardToCheck)
+    {
+      List<Card> matchedCards = new List<Card> {};
+      if (ComputerTurn == true)
+      {
+        foreach (Card cardInPlayerHand in PlayerObject.Hand)
+        {
+          if (cardToCheck.Value == cardInPlayerHand.Value)
+          {
+            matchedCards.Add(cardInPlayerHand);
+          }
+          if (matchedCards.Count == 4)
+          {
+            break;
+          }
+        }
+        if (matchedCards.Count == 4)
+        {
+          PlayerObject.Hand.RemoveAll(card => matchedCards.Contains(card));
+          matchedCards.Clear();
+          // ++ is increment by 1. Same as += 1
+          PlayerObject.BooksCount++;
+        }
+        else
+        {
+          matchedCards.Clear();
+        }
+      }
+    }
   }
 }

@@ -6,6 +6,6 @@ namespace GoFish.Models
   public class Computer
   {
     public List<Card> Hand { get; set; } = new List<Card> ();
-    public int Ranks { get; set; } = 0;
+    public int BooksCount { get; set; } = 0;
   }
 }
