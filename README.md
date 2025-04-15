@@ -6,13 +6,13 @@
   - [X] 2. Check value of selected card against computers cards
   - [X] 3. If the value matches, give card to player
   - [X] 4. If the value doesn't match, have player draw from deck
-- [x] 5. Display ranks on view
+- [x] 5. Display books on view
 - [X] 6. Set up alternating turns. Allow computer to take it's turn
 - [ ] 7. Display if player or computer get complete pair of 4 cards
 - [ ] 8. end game when deck is out of cards and hands are empty. The player with the most amount of 4 of a kind is the winner
 
 
-## check ranks ##
+## check book ##
 * [x] check to see if computer or player has 4 of the same value in hand
 * [x] If yes, remove them from hand
-* [x] add 1 to rank counter
+* [x] add 1 to book counter

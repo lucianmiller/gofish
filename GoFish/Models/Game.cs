@@ -70,10 +70,10 @@ namespace GoFish.Models
           valueMatched = true;
           currentUserCards.Add(otherUserCard);
         }
-        else
-        {
-          newAskedUserHand.Add(otherUserCard);
-        }
+        // else
+        // {
+        //   newAskedUserHand.Add(otherUserCard);
+        // }
       }
       //reassign user hand to filtered hand
 
@@ -83,6 +83,11 @@ namespace GoFish.Models
       {
         List<Card> drawnCard = NewDeck.DrawCards(1);
         currentUserCards.Add(drawnCard[0]);
+        CardValueMatch(drawnCard[0]);
+      }
+      else
+      {
+        CardValueMatch(selectedCard);
       }
       SwitchTurn();
     }
@@ -113,6 +118,30 @@ namespace GoFish.Models
         else
         {
           matchedCards.Clear();
+        }
+      }
+      else
+      {
+        foreach (Card cardInComputerHand in ComputerObject.Hand)
+        {
+          if (cardToCheck.Value == cardInComputerHand.Value)
+          {
+            matchedCards.Add(cardInComputerHand);
+          }
+          if (matchedCards.Count == 4)
+          {
+            break;
+          }
+          if (matchedCards.Count == 4)
+          {
+            ComputerObject.Hand.RemoveAll(card => matchedCards.Contains(card));
+            matchedCards.Clear();
+            ComputerObject.BooksCount++;
+          }
+          else
+          {
+            matchedCards.Clear();
+          }
         }
       }
     }
