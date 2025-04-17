@@ -62,13 +62,14 @@ namespace GoFish.Models
 
       //searching through other hand and adding it to the current users hand if it is found
       bool valueMatched = false;
-      List<Card> newAskedUserHand = new List<Card> {};
+      List<Card> removeAskedUserCards = new List<Card> {};
       foreach (Card otherUserCard in askedUserHand)
       {
         if (selectedCard.Value == otherUserCard.Value)
         {
           valueMatched = true;
           currentUserCards.Add(otherUserCard);
+          removeAskedUserCards.Add(otherUserCard);
         }
         // else
         // {
@@ -76,9 +77,11 @@ namespace GoFish.Models
         // }
       }
       //reassign user hand to filtered hand
-
+      askedUserHand.RemoveAll(card => removeAskedUserCards.Contains(card));
+      removeAskedUserCards.Clear();
       //If card is not found, draw from deck
-      askedUserHand = newAskedUserHand;
+
+      // askedUserHand = newAskedUserHand;
       if (valueMatched == false)
       {
         List<Card> drawnCard = NewDeck.DrawCards(1);
