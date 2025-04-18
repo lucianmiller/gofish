@@ -39,7 +39,7 @@ namespace GoFish.Controllers
       gameObj.AskCard(randomCard);
       ViewBag.CardValue = randomCard.Value;
       Console.WriteLine("\x1b[37;46mCOMPUTERS TURN\x1b[0m");
-      Console.WriteLine($"\x1b[37;40mCard: {randomCard.Value}\x1b[0m");
+      Console.WriteLine($"\x1b[37;40mComputer Asked Card: {randomCard.Value}\x1b[0m");
       gameObj.PlayerObject.Hand.ForEach(card => Console.WriteLine($"\x1b[95;40mPlayer Hand: {card.Value} of {card.Suit}\x1b[0m"));
       gameObj.ComputerObject.Hand.ForEach(card => Console.WriteLine($"\x1b[36;40mComputer Hand: {card.Value} of {card.Suit}\x1b[0m"));
       return View();
