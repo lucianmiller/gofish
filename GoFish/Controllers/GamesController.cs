@@ -19,6 +19,10 @@ namespace GoFish.Controllers
       Game gameObj = Game.GetInstance();
       Card tempCard = new Card(cardSuit, cardValue);
       gameObj.AskCard(tempCard);
+      if (gameObj.CheckIfGameOver() == true)
+      {
+        return RedirectToAction("GameOver");
+      }
       if (gameObj.ComputerTurn == false)
       {
         return RedirectToAction("Index");
@@ -57,6 +61,21 @@ namespace GoFish.Controllers
     {
       Game.Reset();
       return RedirectToAction("Index");
+    }
+
+    [HttpGet("/games/game-over")]
+    public ActionResult GameOver()
+    {
+      Game gameObj = Game.GetInstance();
+      if (gameObj.PlayerObject.BooksCount > gameObj.ComputerObject.BooksCount)
+      {
+        ViewBag.Winner = "You Won!";
+      }
+      else
+      {
+        ViewBag.Winner = "The Computer Won!";
+      }
+      return View();
     }
   }
 }

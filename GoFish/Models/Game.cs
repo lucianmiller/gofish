@@ -158,5 +158,17 @@ namespace GoFish.Models
         }
       }
     }
+
+    public bool CheckIfGameOver()
+    {
+      if (NewDeck.DeckOfCards.Count == 0 && PlayerObject.Hand.Count == 0 && ComputerObject.Hand.Count == 0)
+      {
+        return true;
+      }
+      else
+      {
+        return false;
+      }
+    }
   }
 }
