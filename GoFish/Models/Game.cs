@@ -36,6 +36,7 @@ namespace GoFish.Models
       ComputerObject.Hand = NewDeck.DrawCards(5);
     }
 
+    
     public void SwitchTurn()
     {
       if (ComputerTurn == false)
@@ -59,8 +60,9 @@ namespace GoFish.Models
         currentUserCards = ComputerObject.Hand;
         askedUserHand = PlayerObject.Hand;
       }
-      //draw card if hand is empty
-      if (currentUserCards.Count == 0)
+
+      //draw card if Player hand is empty
+      if (PlayerObject.Hand.Count == 0)
       {
         List<Card> drawnCard = NewDeck.DrawCards(1);
         currentUserCards.Add(drawnCard[0]);
@@ -77,10 +79,6 @@ namespace GoFish.Models
           currentUserCards.Add(otherUserCard);
           removeAskedUserCards.Add(otherUserCard);
         }
-        // else
-        // {
-        //   newAskedUserHand.Add(otherUserCard);
-        // }
       }
       //If card is not found, draw from deck
 
@@ -103,16 +101,13 @@ namespace GoFish.Models
 
     public void CardValueMatch(Card cardToCheck)
     {
-      Console.WriteLine($"\x1b[37;44mChecking Card {cardToCheck.Value}\x1b[0m");
       List<Card> matchedCards = new List<Card> {};
       if (ComputerTurn == false)
       {
         foreach (Card cardInPlayerHand in PlayerObject.Hand)
         {
-          Console.WriteLine($"\x1b[37;42mChecking card in Player hand: {cardInPlayerHand.Value}\x1b[0m");
           if (cardToCheck.Value == cardInPlayerHand.Value)
           {
-            Console.WriteLine("\x1b[37;41mMatch Detected\x1b[0m");
             matchedCards.Add(cardInPlayerHand);
           }
           if (matchedCards.Count == 4)
@@ -120,7 +115,6 @@ namespace GoFish.Models
             break;
           }
         }
-        Console.WriteLine($"\x1b[37;40mPlayer Matched Cards: {matchedCards.Count}\x1b[0m");
         if (matchedCards.Count == 4)
         {
           PlayerObject.Hand.RemoveAll(card => matchedCards.Contains(card));

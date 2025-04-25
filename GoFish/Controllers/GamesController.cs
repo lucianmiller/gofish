@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using GoFish.Models;
 using System;
+using System.Collections.Generic;
 
 namespace GoFish.Controllers
 {
@@ -37,15 +38,16 @@ namespace GoFish.Controllers
     public ActionResult ComputerThinking()
     {
       Game gameObj = Game.GetInstance();
+      if (gameObj.ComputerObject.Hand.Count == 0)
+      {
+        List<Card> drawnCard = gameObj.NewDeck.DrawCards(1);
+        gameObj.ComputerObject.Hand.Add(drawnCard[0]);
+      }
       Random randomObj = new Random();
       int randomCardIndex = randomObj.Next(0, gameObj.ComputerObject.Hand.Count);
       Card randomCard = gameObj.ComputerObject.Hand[randomCardIndex];
       gameObj.AskCard(randomCard);
       ViewBag.CardValue = randomCard.Value;
-      Console.WriteLine("\x1b[37;46mCOMPUTERS TURN\x1b[0m");
-      Console.WriteLine($"\x1b[37;40mComputer Asked Card: {randomCard.Value}\x1b[0m");
-      gameObj.PlayerObject.Hand.ForEach(card => Console.WriteLine($"\x1b[95;40mPlayer Hand: {card.Value} of {card.Suit}\x1b[0m"));
-      gameObj.ComputerObject.Hand.ForEach(card => Console.WriteLine($"\x1b[36;40mComputer Hand: {card.Value} of {card.Suit}\x1b[0m"));
       return View();
     }
 

@@ -10,6 +10,8 @@
     <br>
     <br>
     <h2>@ViewBag.Winner</h2>
-    <a href="/"><button>New Game</button></a>
+    <form action="/games/reset" method="post">
+      <button type="submit" name="new-game-button">New Game</button>
+    </form>
   </body>
 </html>
