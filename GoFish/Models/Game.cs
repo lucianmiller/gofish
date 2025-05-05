@@ -50,7 +50,7 @@ namespace GoFish.Models
     }
 
     //Based on the current player, checks if selected card is in an opposing players hand
-    public void AskCard(Card selectedCard)
+    public bool AskCard(Card selectedCard)
     {
       //determine current player and opposing player hand
       List<Card> currentUserCards = PlayerObject.Hand;
@@ -97,6 +97,7 @@ namespace GoFish.Models
       askedUserHand.RemoveAll(card => removeAskedUserCards.Contains(card));
       removeAskedUserCards.Clear();
       SwitchTurn();
+      return valueMatched;
     }
 
     public void CardValueMatch(Card cardToCheck)

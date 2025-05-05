@@ -19,7 +19,7 @@ namespace GoFish.Controllers
     {
       Game gameObj = Game.GetInstance();
       Card tempCard = new Card(cardSuit, cardValue);
-      gameObj.AskCard(tempCard);
+      bool drawnCardResult = gameObj.AskCard(tempCard);
       if (gameObj.CheckIfGameOver() == true)
       {
         return RedirectToAction("GameOver");
@@ -30,12 +30,12 @@ namespace GoFish.Controllers
       }
       else
       {
-        return RedirectToAction("ComputerThinking");
+        return RedirectToAction("ComputerThinking", new {playerAskedCardValue = tempCard.Value, playerDrawnCardResult = drawnCardResult});
       }
     }
 
     [HttpGet("/games/computer-thinking")]
-    public ActionResult ComputerThinking()
+    public ActionResult ComputerThinking(string playerAskedCardValue, bool playerDrawnCardResult)
     {
       Game gameObj = Game.GetInstance();
       if (gameObj.ComputerObject.Hand.Count == 0)
@@ -46,15 +46,20 @@ namespace GoFish.Controllers
       Random randomObj = new Random();
       int randomCardIndex = randomObj.Next(0, gameObj.ComputerObject.Hand.Count);
       Card randomCard = gameObj.ComputerObject.Hand[randomCardIndex];
-      gameObj.AskCard(randomCard);
-      ViewBag.CardValue = randomCard.Value;
+      ViewBag.ComputerDrawnCardResult = gameObj.AskCard(randomCard);
+      ViewBag.PlayerDrawnCardResult = playerDrawnCardResult;
+      ViewBag.ComputerAskedCardValue = randomCard.Value;
+      ViewBag.PlayerAskedCardValue = playerAskedCardValue;
       return View();
     }
 
     [HttpGet("/games/turn-summary")]
-    public ActionResult TurnSummary(string cardValue)
+    public ActionResult TurnSummary(string computerCardValue, string playerCardValue, bool computerDrawnCard, bool playerDrawnCard)
     {
-      ViewBag.CardValue = cardValue;
+      ViewBag.ComputerDrawnCardResult = computerDrawnCard;
+      ViewBag.PlayerDrawnCardResult = playerDrawnCard;
+      ViewBag.ComputerAskedCardValue = computerCardValue;
+      ViewBag.PlayerAskedCardValue = playerCardValue;
       return View();
     }
 

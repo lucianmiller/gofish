@@ -7,11 +7,14 @@
   <body>
     <h1>The computer is thinking...</h1>
     <script>
-      let cardValue = '@ViewBag.CardValue';
-      const turnSummaryURL = '@Url.Action("turn-summary", "games")' + '?cardValue=' + encodeURIComponent(cardValue);
+      let computerCardValue = '@ViewBag.ComputerAskedCardValue';
+      let playerCardValue = '@ViewBag.PlayerAskedCardValue';
+      let playerDrawnCard = '@ViewBag.PlayerDrawnCardResult';
+      let computerDrawnCard = '@ViewBag.ComputerDrawnCardResult';
+      const turnSummaryURL = '@Url.Action("turn-summary", "games")' + '?computerCardValue=' + encodeURIComponent(computerCardValue) + '&playerCardValue=' + encodeURIComponent(playerCardValue) + '&computerDrawnCard=' + encodeURIComponent(computerDrawnCard) + '&playerDrawnCard=' + encodeURIComponent(playerDrawnCard);
       setTimeout(() => {
         window.location.href = turnSummaryURL;
-      }, "1000")
+      }, "1500")
     </script>
   </body>
 </html>

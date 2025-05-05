@@ -5,7 +5,24 @@
   </head>
   <body>
     <h1>You and the Computer took these actions:</h1>
-    <h2>The Computer asked for @ViewBag.CardValue</h2>
+    <h2>You asked for @ViewBag.PlayerAskedCardValue</h2>
+    @if (ViewBag.PlayerDrawnCardResult)
+    {
+      <h2>The computer handed you their @ViewBag.PlayerAskedCardValue</h2>
+    }
+    else
+    {
+      <h2>The computer didn't have any @ViewBag.PlayerAskedCardValue. You drew from the deck.</h2>
+    }
+    <h2>The Computer asked for @ViewBag.ComputerAskedCardValue</h2>
+    @if (ViewBag.ComputerDrawnCardResult)
+    {
+      <h2>You handed the computer your @ViewBag.ComputerAskedCardValue</h2>
+    }
+    else
+    {
+      <h2>You didn't have any @ViewBag.ComputerAskedCardValue. The computer drew from the deck.</h2>
+    }
 
     <br>
     <form action="/games">
