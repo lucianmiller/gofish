@@ -6,9 +6,6 @@
   </head>
   <body>
     @using GoFish.Models;
-    <form action="/games/reset" method="post">
-      <button type="submit" name="reset-button">Reset</button>
-    </form>
     <br>
     <h2>Number of cards left in the deck: @Model.NewDeck.DeckOfCards.Count</h2>
     <h2>Cards left in Computer Hand: @Model.ComputerObject.Hand.Count</h2>
